@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button type="button" id="fetchUser"> Fetch Data</button>
+        <div id="data">
+
+        </div>
+    </div>
+    <script>
+        document.getElementById("fetchUser").addEventListener("click", (a) => {
+            const url = "https://jsonplaceholder.typicode.com/posts";
+            fetch(url)
+                .then((apidata) => apidata.json())
+                .then((actualdata) => {
+                    console.log(actualdata)
+                    let html = "";
+                    actualdata.forEach((user) => {
+                        html += ` <ul>
+                <li>${user.id}) ${user.title} ==> ${user.body}</li>
+             
+              </ul>    `;
+                        document.getElementById("data").innerHTML = html;
+                    });
+                });
+        });
+
+    </script>
+</body>
+
+</html>
